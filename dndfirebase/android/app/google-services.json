@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "971130132687",
+    "project_id": "mobiledevices-17d98",
+    "storage_bucket": "mobiledevices-17d98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971130132687:android:29f52ad72b738a565c3fba",
+        "android_client_info": {
+          "package_name": "com.example.dndfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971130132687-hs5p0puo023qdgohgtjlrbiolcoehrp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Wx-MlmZhvlSM6cJARxBhWqYDaXxaURc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971130132687-hs5p0puo023qdgohgtjlrbiolcoehrp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
