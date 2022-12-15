@@ -2,8 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class ChatListScreen extends StatelessWidget {
-  const ChatListScreen({
+class PartiesScreen extends StatelessWidget {
+  const PartiesScreen({
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +23,6 @@ class _ChatList extends StatelessWidget {
     return StreamBuilder(
       stream: db
           .collection("/Parties")
-          .orderBy("createdAt", descending: true)
           .snapshots(),
       builder: (
         BuildContext context,
@@ -42,14 +41,9 @@ class _ChatList extends StatelessWidget {
           itemBuilder: (context, index) {
             final doc = docs[index];
             return ListTile(
-              title: Text(doc['title']),
-              subtitle: Text(doc.id),
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                  '/chat-messages',
-                  arguments: doc.id,
-                );
-              },
+              title: Text(doc['name']),
+              subtitle: Text(doc['']),
+              
             );
           },
         );
