@@ -10,20 +10,23 @@ class PartiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Parties")),
+      appBar: AppBar(
+        title: Text("Parties"),
+        backgroundColor: Colors.red,
+      ),
       body: _ChatList(),
     );
   }
 }
 
 class _ChatList extends StatelessWidget {
+  int lvlInt = 69;
+
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
     return StreamBuilder(
-      stream: db
-          .collection("/Parties")
-          .snapshots(),
+      stream: db.collection("/Parties").snapshots(),
       builder: (
         BuildContext context,
         AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
@@ -36,14 +39,15 @@ class _ChatList extends StatelessWidget {
         }
         final querySnap = snapshot.data!;
         final docs = querySnap.docs;
+
         return ListView.builder(
           itemCount: docs.length,
           itemBuilder: (context, index) {
             final doc = docs[index];
+            lvlInt = doc["lvl"];
             return ListTile(
               title: Text(doc['name']),
-              subtitle: Text(doc['']),
-              
+              subtitle: Text("LVL $lvlInt"),
             );
           },
         );

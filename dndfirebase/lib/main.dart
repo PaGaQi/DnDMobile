@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'Screens/parties_screen.dart';
 import 'firebase_options.dart';
 
-
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -24,7 +21,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/Parties',
       routes: {
         '/Parties': (context) => PartiesScreen(),
-        
       },
     );
   }
