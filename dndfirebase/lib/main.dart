@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/main_screen.dart';
 import 'Screens/parties_screen.dart';
 import 'firebase_options.dart';
 
@@ -18,8 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/Parties',
+      initialRoute: '/MainScreen',
       routes: {
+        '/MainScreen': (context) => MainScreen(),
         '/Parties': (context) => PartiesScreen(),
       },
     );
