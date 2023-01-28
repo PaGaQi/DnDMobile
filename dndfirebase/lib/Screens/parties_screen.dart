@@ -14,13 +14,18 @@ class PartiesScreen extends StatelessWidget {
         title: Text("Parties"),
         backgroundColor: Color.fromARGB(255, 255, 22, 22),
       ),
-      body: _ChatList(),
+      body: _PartiesList(),
       backgroundColor: Color.fromARGB(255, 255, 189, 89),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => Navigator.of(context).pushNamed('/MainScreen'),
+        backgroundColor: Color.fromARGB(255, 255, 22, 22),
+      ),
     );
   }
 }
 
-class _ChatList extends StatelessWidget {
+class _PartiesList extends StatelessWidget {
   int lvlInt = 69;
 
   @override
@@ -36,7 +41,10 @@ class _ChatList extends StatelessWidget {
           return ErrorWidget(snapshot.error.toString());
         }
         if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 255, 22, 22),
+          ));
         }
         final querySnap = snapshot.data!;
         final docs = querySnap.docs;
@@ -49,7 +57,7 @@ class _ChatList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListTile(
-                leading: Icon(Icons.people),
+                leading: const Icon(Icons.people),
                 title: Text(
                   doc['name'],
                   style: const TextStyle(

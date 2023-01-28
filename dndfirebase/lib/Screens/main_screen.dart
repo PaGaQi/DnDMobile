@@ -60,7 +60,7 @@ class MainScreenData extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   //MONSTER LIST BUTTON
@@ -86,7 +86,7 @@ class MainScreenData extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   //CREATE A MONSTER BUTTON
