@@ -1,3 +1,4 @@
+import 'package:dndfirebase/Screens/monster_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/MainScreen': (context) => MainScreen(),
         '/Parties': (context) => PartiesScreen(),
+        '/MonsterList': (context) => MonsterList(),
       },
     );
   }
