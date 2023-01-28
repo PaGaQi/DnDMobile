@@ -11,7 +11,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("D&D Monstruary"),
-        backgroundColor: Colors.red,
+        backgroundColor: Color.fromARGB(255, 255, 22, 22),
         toolbarHeight: 130,
       ),
       body: MainScreenData(),
@@ -29,9 +29,8 @@ class MainScreenData extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            color: Color.fromARGB(255, 214, 224, 165),
+            color: Color.fromARGB(255, 255, 189, 89),
           ),
-          //PARTIES BUTTON
           Padding(
             padding: const EdgeInsets.all(50),
             child: Align(
@@ -43,7 +42,7 @@ class MainScreenData extends StatelessWidget {
                     height: 100,
                     width: 500,
                     child: FloatingActionButton(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromARGB(255, 255, 22, 22),
                       heroTag: "partiesScreen",
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -69,7 +68,7 @@ class MainScreenData extends StatelessWidget {
                     height: 100,
                     width: 500,
                     child: FloatingActionButton(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromARGB(255, 255, 22, 22),
                       heroTag: "partiesScreen",
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -90,12 +89,12 @@ class MainScreenData extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  //CREATE A MONSTER LIST BUTTON
+                  //CREATE A MONSTER BUTTON
                   SizedBox(
                     height: 100,
                     width: 500,
                     child: FloatingActionButton(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromARGB(255, 255, 22, 22),
                       heroTag: "partiesScreen",
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),

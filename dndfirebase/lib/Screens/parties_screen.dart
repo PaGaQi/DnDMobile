@@ -12,9 +12,10 @@ class PartiesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Parties"),
-        backgroundColor: Colors.red,
+        backgroundColor: Color.fromARGB(255, 255, 22, 22),
       ),
       body: _ChatList(),
+      backgroundColor: Color.fromARGB(255, 255, 189, 89),
     );
   }
 }
@@ -45,9 +46,31 @@ class _ChatList extends StatelessWidget {
           itemBuilder: (context, index) {
             final doc = docs[index];
             lvlInt = doc["lvl"];
-            return ListTile(
-              title: Text(doc['name']),
-              subtitle: Text("LVL $lvlInt"),
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ListTile(
+                leading: Icon(Icons.people),
+                title: Text(
+                  doc['name'],
+                  style: const TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                subtitle: Text("LVL $lvlInt"),
+                tileColor: Color.fromARGB(255, 255, 22, 22),
+                trailing: Text(
+                  "$lvlInt PCs",
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 255, 189, 89),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
             );
           },
         );
