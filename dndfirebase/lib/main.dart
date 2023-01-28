@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'Screens/main_screen.dart';
 import 'Screens/parties_screen.dart';
+import 'Screens/party_edit_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/MainScreen': (context) => MainScreen(),
         '/Parties': (context) => PartiesScreen(),
+        '/PartyEdit': (context) => PartyEditScreen(),
       },
     );
   }

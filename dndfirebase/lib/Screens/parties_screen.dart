@@ -18,7 +18,7 @@ class PartiesScreen extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 255, 189, 89),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => Navigator.of(context).pushNamed('/MainScreen'),
+        onPressed: () => Navigator.of(context).pushNamed('/PartyEdit'),
         backgroundColor: Color.fromARGB(255, 255, 22, 22),
       ),
     );
@@ -26,7 +26,8 @@ class PartiesScreen extends StatelessWidget {
 }
 
 class _PartiesList extends StatelessWidget {
-  int lvlInt = 69;
+  late int lvlInt;
+  late int playersInt;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,7 @@ class _PartiesList extends StatelessWidget {
           itemBuilder: (context, index) {
             final doc = docs[index];
             lvlInt = doc["lvl"];
+            playersInt = doc["players"];
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListTile(
@@ -68,7 +70,7 @@ class _PartiesList extends StatelessWidget {
                 subtitle: Text("LVL $lvlInt"),
                 tileColor: Color.fromARGB(255, 255, 22, 22),
                 trailing: Text(
-                  "$lvlInt PCs",
+                  "$playersInt PCs",
                   style: const TextStyle(
                     color: Color.fromARGB(255, 255, 189, 89),
                     fontWeight: FontWeight.bold,
