@@ -80,6 +80,8 @@ class _PartiesList extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
+                onTap: (() => Navigator.of(context)
+                    .pushNamed('/PartyEdit', arguments: doc.id)),
               ),
             );
           },

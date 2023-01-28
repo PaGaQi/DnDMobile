@@ -77,44 +77,60 @@ class _PartyEditScreen extends State<PartyEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Edit Player")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            //PARTY NAME
-            TextField(
-              autofocus: true,
-              controller: controllerName,
-              decoration: InputDecoration(
-                label: Text(nameInTag),
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
+      ),
+      home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 255, 189, 89),
+        appBar: AppBar(
+          title: const Text("Edit Player"),
+          backgroundColor: const Color.fromARGB(255, 255, 22, 22),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              //PARTY NAME
+              TextField(
+                autofocus: true,
+                controller: controllerName,
+                decoration: InputDecoration(
+                  label: Text(nameInTag),
+                ),
               ),
-            ),
-            //PARTY LEVEL
-            TextField(
-              controller: controllerLevel,
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: const InputDecoration(
-                label: Text("Party Level"),
+              //PARTY LEVEL
+              TextField(
+                controller: controllerLevel,
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                decoration: const InputDecoration(
+                  label: Text(
+                    "Party Level",
+                  ),
+                ),
               ),
-            ),
-            //PARTY MEMBERS
-            TextField(
-              controller: controllerPlayers,
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: const InputDecoration(
-                label: Text("Party Members"),
+              //PARTY MEMBERS
+              TextField(
+                controller: controllerPlayers,
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                decoration: const InputDecoration(
+                  label: Text("Party Members"),
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: _addParty,
-              child: const Text("Add"),
-            ),
-          ],
+              SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: _addParty,
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      Color.fromARGB(255, 255, 22, 22)),
+                ),
+                child: const Text("Add"),
+              ),
+            ],
+          ),
         ),
       ),
     );
