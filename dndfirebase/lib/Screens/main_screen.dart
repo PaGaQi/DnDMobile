@@ -69,14 +69,14 @@ class MainScreenData extends StatelessWidget {
                     width: 500,
                     child: FloatingActionButton(
                       backgroundColor: Color.fromARGB(255, 255, 22, 22),
-                      heroTag: "partiesScreen",
+                      heroTag: "monsterScreen",
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
                       onPressed: () {
                         Navigator.of(context).pushNamed(
                           arguments: aGoals,
-                          "/Parties",
+                          "/MonsterList",
                         );
                       },
                       child: const Text(
@@ -107,6 +107,31 @@ class MainScreenData extends StatelessWidget {
                       },
                       child: const Text(
                         "Create Monster",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  SizedBox(
+                    height: 150,
+                    width: 200,
+                    child: FloatingActionButton(
+                      backgroundColor: Color.fromARGB(255, 255, 22, 22),
+                      heroTag: "partiesScreen",
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                          arguments: aGoals,
+                          "/Parties",
+                        );
+                      },
+                      child: const Text(
+                        "Battle",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                         textAlign: TextAlign.center,
                       ),
