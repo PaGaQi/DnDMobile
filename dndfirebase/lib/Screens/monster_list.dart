@@ -45,12 +45,9 @@ class MonsterListBody extends StatelessWidget {
               title: const Text('Monster List'),
               titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
               backgroundColor: Color.fromARGB(255, 255, 22, 22),
-
               notificationPredicate: (ScrollNotification notification) {
                 return notification.depth == 1;
               },
-              // The elevation value of the app bar when scroll view has
-              // scrolled underneath the app bar.
               scrolledUnderElevation: 4.0,
               shadowColor: Theme.of(context).shadowColor,
               bottom: TabBar(
@@ -97,20 +94,22 @@ class MonsterListBody extends StatelessWidget {
                           itemCount: currentMonster.length,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
-                              tileColor: index.isOdd
-                                  ? Color.fromARGB(255, 255, 189, 89)
-                                  : Color.fromARGB(255, 252, 201, 126),
-                              title: Text(currentMonster[index].name,
-                                  style: const TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  )),
-                              leading: SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child:
-                                      Image.network(currentMonster[index].url)),
-                            );
+                                tileColor: index.isOdd
+                                    ? Color.fromARGB(255, 255, 189, 89)
+                                    : Color.fromARGB(255, 252, 201, 126),
+                                title: Text(currentMonster[index].name,
+                                    style: const TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    )),
+                                leading: SizedBox(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.network(
+                                        currentMonster[index].url)),
+                                onTap: () => Navigator.of(context).pushNamed(
+                                    '/MonsterInfo',
+                                    arguments: currentMonster[index].id));
                           },
                         ),
                         ListView.builder(

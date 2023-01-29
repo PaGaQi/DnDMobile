@@ -6,6 +6,7 @@ import 'Screens/main_screen.dart';
 import 'Screens/parties_screen.dart';
 import 'Screens/party_edit_screen.dart';
 import 'Screens/monster_list.dart';
+import 'Screens/homebrew_info_screen.dart';
 import 'Screens/monster_info_screen.dart';
 
 void main() async {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/PartyEdit': (context) => PartyEditScreen(),
         '/MonsterList': (context) => MonsterListBody(),
         '/HomebrewInfo': (context) => HomebrewInfoScreen(),
+        '/MonsterInfo': (context) => MonsterInfoScreen(),
       },
     );
   }

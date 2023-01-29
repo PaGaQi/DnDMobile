@@ -3,15 +3,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:dndfirebase/Modals/firebase_data.dart';
 
-class MonsterInfoScreen extends StatefulWidget {
-  const MonsterInfoScreen({super.key});
+class HomebrewInfoScreen extends StatefulWidget {
+  const HomebrewInfoScreen({super.key});
 
   @override
-  State<MonsterInfoScreen> createState() => _MonsterInfoScreen();
+  State<HomebrewInfoScreen> createState() => _HomebrewInfoScreen();
 }
 
-class _MonsterInfoScreen extends State<MonsterInfoScreen> {
+class _HomebrewInfoScreen extends State<HomebrewInfoScreen> {
   late String id;
+  String homebrewImg =
+      'https://www.dndbeyond.com/content/1-0-2372-0/skins/waterdeep/images/icons/monsters/aberration.jpg';
 
   @override
   void didChangeDependencies() {
@@ -21,13 +23,19 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
     super.didChangeDependencies();
   }
 
+  void _addParty() {
+    final db = FirebaseFirestore.instance;
+
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
     didChangeDependencies();
 
     return StreamBuilder(
-        stream: db.doc("monstersDnD/$id").snapshots(),
+        stream: db.doc("homebrew/$id").snapshots(),
         builder: (
           BuildContext context,
           AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot,
@@ -73,7 +81,7 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                       width: 250,
                       child: Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Image.network(docSnap['img_url'])),
+                          child: Image.network(homebrewImg)),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -90,6 +98,7 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          //const SizedBox(width: 50),
                           const Text(
                             "Armor Class: ",
                             style: TextStyle(
@@ -98,7 +107,7 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                             ),
                           ),
                           Text(
-                            " ${docSnap['Armor Class']}",
+                            "  ${docSnap['armor class']}",
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -107,21 +116,20 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                           ),
                         ],
                       ),
-
                       const SizedBox(height: 5),
                       //HIT POINTS--------------------------------------------------------------------
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Health Points: ",
+                            "Hit Points: ",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
                             ),
                           ),
                           Text(
-                            " ${docSnap['Hit Points']}",
+                            "  ${docSnap['hit points']}",
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -130,8 +138,28 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                           ),
                         ],
                       ),
-
                       const SizedBox(height: 5),
+                      //SPEED--------------------------------------------------------------------
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Speed: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['speed']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -278,77 +306,96 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                     width: 50,
                   ),
                   const SizedBox(height: 5),
+                  //SAVING THROWS--------------------------------------------------------------------
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      //SPEED--------------------------------------------------------------------
-                      const Text(
-                        "Speed: ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //const SizedBox(width: 50),
+                          const Text(
+                            "Saving Throws: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['saving throws']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "  ${docSnap['Speed']}",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
+                      const SizedBox(height: 5),
                       //SENSES--------------------------------------------------------------------
-                      const Text(
-                        "Senses: ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Senses: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['senses']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "  ${docSnap['Senses']}",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-
                       const SizedBox(height: 5),
                       //LANGUAGES--------------------------------------------------------------------
-                      const Text(
-                        "Languages: ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Languages: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['languages']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "  ${docSnap['Languages']}",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-
                       const SizedBox(height: 5),
                       //CHALLENGE--------------------------------------------------------------------
-
-                      const Text(
-                        "Challenge: ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "  ${docSnap['Challenge']}",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Challenge: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['challenge']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
