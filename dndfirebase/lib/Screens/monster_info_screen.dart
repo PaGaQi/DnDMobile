@@ -11,13 +11,9 @@ class MonsterInfoScreen extends StatefulWidget {
 }
 
 class _MonsterInfoScreen extends State<MonsterInfoScreen> {
-  late int intLevel;
-  late int intPlayers;
-  late String monsterName = "Monster";
-  late String monsterMeta = 'Meta';
-  bool isFinished = false;
-
   late String id;
+  String homebrewImg =
+      'https://www.dndbeyond.com/content/1-0-2372-0/skins/waterdeep/images/icons/monsters/aberration.jpg';
 
   @override
   void didChangeDependencies() {
@@ -60,22 +56,113 @@ class _MonsterInfoScreen extends State<MonsterInfoScreen> {
                   Text(
                     "${docSnap['name']}",
                     textAlign: TextAlign.left,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 35),
                   ),
                   Text("${docSnap['meta']}",
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 15,
+                        fontSize: 25,
                       ),
                       textAlign: TextAlign.left),
                 ],
               ),
               backgroundColor: const Color.fromARGB(255, 255, 22, 22),
+              toolbarHeight: 130,
             ),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [],
+              child: ListView(
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      color: Colors.red,
+                      height: 250,
+                      width: 250,
+                      child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Image.network(homebrewImg)),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    color: Colors.red,
+                    height: 5,
+                    width: 50,
+                  ),
+                  //ARMOR CLASS--------------------------------------------------------------------
+                  const SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //const SizedBox(width: 50),
+                          const Text(
+                            "Armor Class: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['armor class']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      //HIT POINTS--------------------------------------------------------------------
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Hit Points: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['hit points']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      //SPEED--------------------------------------------------------------------
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Speed: ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "  ${docSnap['speed']}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           );

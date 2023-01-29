@@ -10,7 +10,9 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("D&D Monstruary"),
+        title: const Text("D&D Monstruary",
+            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+        centerTitle: true,
         backgroundColor: Color.fromARGB(255, 255, 22, 22),
         toolbarHeight: 130,
       ),
@@ -113,7 +115,7 @@ class MainScreenData extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 100,
+                    height: 50,
                   ),
                   SizedBox(
                     height: 150,
