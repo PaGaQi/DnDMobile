@@ -32,27 +32,23 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
   final TextEditingController controllerTraits = TextEditingController();
   final TextEditingController controllerActions = TextEditingController();
 
-  late String name;
-  late String meta;
-  late String ac;
-  late String hp;
-  late String speed;
+  String name = "Custom Monster";
+  String meta = "--";
+  String ac = "1";
+  String hp = "1";
+  String speed = "1 ft";
 
-  late String str;
-  late String dex;
-  late String con;
-  late String inte;
-  late String wis;
-  late String cha;
+  int str = 0;
+  int dex = 0;
+  int con = 0;
+  int inte = 0;
+  int wis = 0;
+  int cha = 0;
 
-  late String saving;
-  late String senses;
-  late String languages;
-  late String challenge;
-  late String traits;
-  late String actions;
-
-  bool isFinished = false;
+  late String saving = "--";
+  late String senses = "--";
+  late String languages = "--";
+  late String challenge = "1";
 
   late String id;
   late String nameInTag = "Monster Name";
@@ -66,7 +62,7 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
   @override
   void didChangeDependencies() {
     final number = ModalRoute.of(context)!.settings.arguments;
-    if (number != null)
+    if (number != 0)
       id = "$number";
     else
       id = '';
@@ -74,10 +70,10 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
   }
 
   void _addMonster() {
-    if (controllerName.text.isEmpty) {
+    if (controllerName.text.isEmpty || controllerMeta.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text("Some information is missing"),
+          content: const Text("'Name' and 'Meta' Fields are Mandatory"),
           backgroundColor: Colors.red[900],
         ),
       );
@@ -85,12 +81,29 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
     }
     final db = FirebaseFirestore.instance;
 
-    //intLevel = int.parse(controllerLevel.text);
-    //intPlayers = int.parse(controllerPlayers.text);
+    name = controllerName.text;
+    meta = controllerMeta.text;
+    if (controllerAc.text.isNotEmpty) ac = controllerAc.text;
+    if (controllerHp.text.isNotEmpty) hp = controllerHp.text;
+    if (controllerSpeed.text.isNotEmpty) speed = controllerSpeed.text;
+
+    if (controllerStr.text.isNotEmpty) str = int.parse(controllerStr.text);
+    if (controllerDex.text.isNotEmpty) dex = int.parse(controllerDex.text);
+    if (controllerCon.text.isNotEmpty) con = int.parse(controllerCon.text);
+    if (controllerInte.text.isNotEmpty) inte = int.parse(controllerInte.text);
+    if (controllerWis.text.isNotEmpty) wis = int.parse(controllerWis.text);
+    if (controllerCha.text.isNotEmpty) cha = int.parse(controllerCha.text);
+
+    if (controllerSaving.text.isNotEmpty) saving = controllerSaving.text;
+    if (controllerSenses.text.isNotEmpty) senses = controllerSenses.text;
+    if (controllerLanguages.text.isNotEmpty)
+      languages = controllerLanguages.text;
+    if (controllerChallenge.text.isNotEmpty)
+      challenge = controllerChallenge.text;
 
     if (id == '') {
       db.collection("/homebrew").add({
-        'name': controllerName.text,
+        'name': name,
         'meta': meta,
         'armor class': ac,
         'hit points': hp,
@@ -101,16 +114,14 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
         'INT': inte,
         'WIS': wis,
         'CHA': cha,
-        'saving': saving,
+        'saving throws': saving,
         'senses': senses,
         'languages': languages,
-        'challenege': challenge,
-        'traits': traits,
-        'actions': actions,
+        'challenge': challenge,
       });
     } else {
       db.doc("/homebrew/$id").set({
-        'name': controllerName.text,
+        'name': name,
         'meta': meta,
         'armor class': ac,
         'hit points': hp,
@@ -121,12 +132,10 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
         'INT': inte,
         'WIS': wis,
         'CHA': cha,
-        'saving': saving,
+        'saving throws': saving,
         'senses': senses,
         'languages': languages,
-        'challenege': challenge,
-        'traits': traits,
-        'actions': actions,
+        'challenge': challenge,
       });
     }
 
@@ -159,20 +168,20 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
                     label: Text(nameInTag),
                   ),
                 ),
-                //PARTY LEVEL
+                //META
                 TextField(
                   controller: controllerMeta,
                   decoration: const InputDecoration(
                     label: Text(
-                      "Monster type & alignment",
+                      "Monster Type & Alignment",
                     ),
                   ),
                 ),
-                //PARTY MEMBERS
+                //AC
                 TextField(
                   controller: controllerAc,
                   decoration: const InputDecoration(
-                    label: Text("Armor class"),
+                    label: Text("Armor Class"),
                   ),
                 ),
                 TextField(
@@ -227,7 +236,7 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
                 TextField(
                   controller: controllerSaving,
                   decoration: const InputDecoration(
-                    label: Text("Saving"),
+                    label: Text("Saving Throws"),
                   ),
                 ),
                 TextField(
@@ -246,18 +255,6 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
                   controller: controllerChallenge,
                   decoration: const InputDecoration(
                     label: Text("Challenges"),
-                  ),
-                ),
-                TextField(
-                  controller: controllerTraits,
-                  decoration: const InputDecoration(
-                    label: Text("Traits"),
-                  ),
-                ),
-                TextField(
-                  controller: controllerActions,
-                  decoration: const InputDecoration(
-                    label: Text("Actions"),
                   ),
                 ),
 

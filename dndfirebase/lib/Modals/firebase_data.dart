@@ -49,8 +49,6 @@ class Homebrew {
   String senses;
   String languages;
   String challenge;
-  String traits;
-  String actions;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -70,9 +68,7 @@ class Homebrew {
         saving = docSnap['saving throws'],
         senses = docSnap['senses'],
         languages = docSnap['languages'],
-        challenge = docSnap['challenge'],
-        traits = docSnap['traits'],
-        actions = docSnap['actions'];
+        challenge = docSnap['challenge'];
 }
 
 Stream<List<Homebrew>> dbGetHomebrew() async* {
