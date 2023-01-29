@@ -108,19 +108,21 @@ class MonsterListBody extends StatelessWidget {
                     itemCount: currentHomebrew.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        tileColor: index.isOdd
-                            ? Color.fromARGB(255, 255, 189, 89)
-                            : Color.fromARGB(255, 252, 201, 126),
-                        title: Text(currentHomebrew[index].name,
-                            style: const TextStyle(
-                              //fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            )),
-                        leading: SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: Image.network(placeholderImg)),
-                      );
+                          tileColor: index.isOdd
+                              ? Color.fromARGB(255, 255, 189, 89)
+                              : Color.fromARGB(255, 252, 201, 126),
+                          title: Text(currentHomebrew[index].name,
+                              style: const TextStyle(
+                                //fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              )),
+                          leading: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: Image.network(placeholderImg)),
+                          onTap: () => Navigator.of(context).pushNamed(
+                              '/MonsterInfo',
+                              arguments: currentHomebrew[index].id));
                     },
                   ),
                 ],

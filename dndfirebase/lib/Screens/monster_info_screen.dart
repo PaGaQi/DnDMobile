@@ -3,23 +3,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:dndfirebase/Modals/firebase_data.dart';
 
-class PartyEditScreen extends StatefulWidget {
-  const PartyEditScreen({super.key});
+class MonsterInfoScreen extends StatefulWidget {
+  const MonsterInfoScreen({super.key});
 
   @override
-  State<PartyEditScreen> createState() => _PartyEditScreen();
+  State<MonsterInfoScreen> createState() => _MonsterInfoScreen();
 }
 
-class _PartyEditScreen extends State<PartyEditScreen> {
-  late String monsterName;
-
+class _MonsterInfoScreen extends State<MonsterInfoScreen> {
   late int intLevel;
   late int intPlayers;
-
+  late String monsterName = "Monster";
+  late String monsterMeta = 'Meta';
   bool isFinished = false;
 
   late String id;
-  late String nameInTag = "Party Name";
 
   @override
   void didChangeDependencies() {
@@ -37,26 +35,50 @@ class _PartyEditScreen extends State<PartyEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
-      ),
-      home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 189, 89),
-        appBar: AppBar(
-          title: const Text("Edit Player"),
-          backgroundColor: const Color.fromARGB(255, 255, 22, 22),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              //PARTY NAME
-            ],
-          ),
-        ),
-      ),
-    );
+    final db = FirebaseFirestore.instance;
+    didChangeDependencies();
+
+    return StreamBuilder(
+        stream: db.doc("homebrew/$id").snapshots(),
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot,
+        ) {
+          if (snapshot.hasError) {
+            return ErrorWidget(snapshot.error.toString());
+          }
+          if (!snapshot.hasData) {
+            return const CircularProgressIndicator();
+          }
+          final docSnap = snapshot.data!;
+          return Scaffold(
+            backgroundColor: Color.fromARGB(255, 255, 189, 89),
+            appBar: AppBar(
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${docSnap['name']}",
+                    textAlign: TextAlign.left,
+                  ),
+                  Text("${docSnap['meta']}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
+                      textAlign: TextAlign.left),
+                ],
+              ),
+              backgroundColor: const Color.fromARGB(255, 255, 22, 22),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [],
+              ),
+            ),
+          );
+        });
   }
 }

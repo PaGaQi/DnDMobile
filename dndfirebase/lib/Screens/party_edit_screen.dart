@@ -27,7 +27,6 @@ class _PartyEditScreen extends State<PartyEditScreen> {
   @override
   void dispose() {
     controllerName.dispose();
-    controllerB.dispose();
     super.dispose();
   }
 

@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 
 import 'Screens/main_screen.dart';
 import 'Screens/parties_screen.dart';
 import 'Screens/party_edit_screen.dart';
 import 'Screens/monster_list.dart';
-import 'firebase_options.dart';
+import 'Screens/monster_info_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/Parties': (context) => PartiesScreen(),
         '/PartyEdit': (context) => PartyEditScreen(),
         '/MonsterList': (context) => MonsterListBody(),
+        '/MonsterInfo': (context) => MonsterInfoScreen(),
       },
     );
   }
