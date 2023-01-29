@@ -120,7 +120,7 @@ class MainScreenData extends StatelessWidget {
                             onPressed: () {
                               Navigator.of(context).pushNamed(
                                 arguments: aGoals,
-                                "/Parties",
+                                "/HomebrewEdit",
                               );
                             },
                             child: const Text(
@@ -153,7 +153,7 @@ class MainScreenData extends StatelessWidget {
                               );
                             },
                             child: const Text(
-                              "Battle",
+                              "Random Encounter Generator",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                               textAlign: TextAlign.center,

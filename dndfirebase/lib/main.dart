@@ -1,3 +1,4 @@
+import 'package:dndfirebase/Screens/homebrew_edit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/MonsterList': (context) => MonsterListBody(),
         '/HomebrewInfo': (context) => HomebrewInfoScreen(),
         '/MonsterInfo': (context) => MonsterInfoScreen(),
+        '/HomebrewEdit': (context) => HomebrewEditScreen(),
       },
     );
   }
