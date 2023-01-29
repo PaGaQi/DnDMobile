@@ -18,8 +18,8 @@ class PartiesScreen extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 255, 189, 89),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => Navigator.of(context).pushNamed('/PartyEdit'),
         backgroundColor: Color.fromARGB(255, 255, 22, 22),
+        onPressed: () => Navigator.of(context).pushNamed('/PartyEdit'),
       ),
     );
   }
@@ -53,36 +53,41 @@ class _PartiesList extends StatelessWidget {
         return ListView.builder(
           itemCount: docs.length,
           itemBuilder: (context, index) {
-            final doc = docs[index];
-            lvlInt = doc["lvl"];
-            playersInt = doc["players"];
+            final currentParty = docs[index];
+            lvlInt = currentParty["lvl"];
+            playersInt = currentParty["players"];
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListTile(
-                leading: const Icon(Icons.people),
-                title: Text(
-                  doc['name'],
-                  style: const TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                  leading: const Icon(Icons.people),
+                  title: Text(
+                    currentParty['name'],
+                    style: const TextStyle(
+                      //fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
-                ),
-                subtitle: Text("LVL $lvlInt"),
-                tileColor: Color.fromARGB(255, 255, 22, 22),
-                trailing: Text(
-                  "$playersInt PCs",
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 255, 189, 89),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                  subtitle: Text("LVL $lvlInt"),
+                  tileColor: Color.fromARGB(255, 255, 22, 22),
+                  trailing: Text(
+                    "$playersInt PCs",
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 255, 189, 89),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                onTap: (() => Navigator.of(context)
-                    .pushNamed('/PartyEdit', arguments: doc.id)),
-              ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  onTap: (() => Navigator.of(context)
+                      .pushNamed('/PartyEdit', arguments: currentParty.id)),
+                  onLongPress: () {
+                    final db = FirebaseFirestore.instance;
+                    DocumentReference doc =
+                        db.collection("/Parties").doc(currentParty.id);
+                    doc.delete();
+                  }),
             );
           },
         );
