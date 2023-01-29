@@ -86,3 +86,76 @@ Stream<List<Homebrew>> dbGetHomebrew() async* {
     yield homebrew;
   }
 }
+
+class Monsters {
+  String id;
+
+  String name;
+  String meta;
+  String armorClass;
+  String hitPoint;
+  String speed;
+  String str;
+  // String str_mod;
+  String dex;
+  //String dex_mod;
+  String con;
+  //String con_mod;
+  String inte;
+  //String inte_mod;
+  String wis;
+  //String wis_mod;
+  String cha;
+  //String cha_mod;
+  String saving_throws;
+  String skills;
+  String senses;
+  String languages;
+  String challenge;
+  String traits;
+  String actions;
+  //String legendary_actions;
+  String image_url;
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Monsters.fromFirestrore(DocumentSnapshot<Map<String, dynamic>> docSnap)
+      : id = docSnap.id,
+        name = docSnap['name'],
+        meta = docSnap['meta'],
+        armorClass = docSnap['Armor Class'],
+        hitPoint = docSnap['Hit Points'],
+        speed = docSnap['speed'],
+        str = docSnap['STR'],
+        //str = docSnap['STR'],
+        dex = docSnap['DEX'],
+        //dex = docSnap['DEX'],
+        con = docSnap['CON'],
+        //con = docSnap['CON'],
+        inte = docSnap['INT'],
+        //inte = docSnap['INT'],
+        wis = docSnap['WIS'],
+        //wis = docSnap['WIS'],
+        cha = docSnap['CHA'],
+        // cha = docSnap['CHA'],
+        saving_throws = docSnap['Saving Throws'],
+        skills = docSnap['Skills'],
+        senses = docSnap['Senses'],
+        languages = docSnap['Languages'],
+        challenge = docSnap['Challenge'],
+        traits = docSnap['Traits'],
+        actions = docSnap['Actions'],
+        image_url = docSnap['img_url'];
+}
+
+Stream<List<Monsters>> dbGetMonsters() async* {
+  final db = FirebaseFirestore.instance;
+  final query = db.collection("/monstersDnD").orderBy("name", descending: true);
+  await for (final qsnap in query.snapshots()) {
+    List<Monsters> monsters = [];
+    for (final doc in qsnap.docs) {
+      monsters.add(Monsters.fromFirestrore(doc));
+    }
+    yield monsters;
+  }
+}

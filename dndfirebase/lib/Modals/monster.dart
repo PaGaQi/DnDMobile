@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class User {
@@ -91,8 +92,10 @@ class User {
 Future<List<User>> loadUserList([int numUsers = 50]) async {
   final uri = Uri.parse(
       "https://gist.githubusercontent.com/tkfu/9819e4ac6d529e225e9fc58b358c3479/raw/d4df8804c25a662efc42936db60cfbc0a5b19db8/srd_5e_monsters.json");
-  final response = await http.get(uri);
-  final json = jsonDecode(response.body);
+  //final response = await http.get(uri);
+  final response = await rootBundle.loadString('assets/srd_5e_monsters.json');
+  final json = await jsonDecode(response);
+  //final json = jsonDecode(response.body);
   final jsonUserList = json["results"];
   List<User> userList = [];
   for (final jsonUser in jsonUserList) {
