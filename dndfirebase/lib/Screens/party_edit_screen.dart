@@ -83,6 +83,15 @@ class _PartyEditScreen extends State<PartyEditScreen> {
       home: Scaffold(
         backgroundColor: Color.fromARGB(255, 255, 189, 89),
         appBar: AppBar(
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+          ),
           title: const Text("Edit Player"),
           backgroundColor: const Color.fromARGB(255, 255, 22, 22),
         ),

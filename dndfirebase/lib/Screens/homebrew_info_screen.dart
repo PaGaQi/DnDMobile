@@ -50,21 +50,33 @@ class _HomebrewInfoScreen extends State<HomebrewInfoScreen> {
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 189, 89),
             appBar: AppBar(
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "${docSnap['name']}",
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 35),
-                  ),
-                  Text("${docSnap['meta']}",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${docSnap['name']}",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 35),
                       ),
-                      textAlign: TextAlign.left),
+                      Text("${docSnap['meta']}",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                          ),
+                          textAlign: TextAlign.left),
+                    ],
+                  ),
+                  FloatingActionButton(
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed('/HomebrewEdit', arguments: docSnap.id),
+                    child: Icon(Icons.edit),
+                    backgroundColor: Color.fromARGB(255, 255, 22, 22),
+                    elevation: 0,
+                  )
                 ],
               ),
               backgroundColor: const Color.fromARGB(255, 255, 22, 22),
