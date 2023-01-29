@@ -120,7 +120,7 @@ class MonsterListBody extends StatelessWidget {
                               tileColor: index.isOdd
                                   ? Color.fromARGB(255, 255, 189, 89)
                                   : Color.fromARGB(255, 252, 201, 126),
-                              title: Text('${titles[0]} $index'),
+                              title: Text('${titles[1]} $index'),
                             );
                           },
                         ),
@@ -141,7 +141,7 @@ class MonsterListBody extends StatelessWidget {
                                     height: 30,
                                     child: Image.network(placeholderImg)),
                                 onTap: () => Navigator.of(context).pushNamed(
-                                    '/MonsterInfo',
+                                    '/HomebrewInfo',
                                     arguments: currentHomebrew[index].id));
                           },
                         ),

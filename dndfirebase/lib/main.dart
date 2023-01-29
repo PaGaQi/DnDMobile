@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/Parties': (context) => PartiesScreen(),
         '/PartyEdit': (context) => PartyEditScreen(),
         '/MonsterList': (context) => MonsterListBody(),
-        '/MonsterInfo': (context) => MonsterInfoScreen(),
+        '/HomebrewInfo': (context) => HomebrewInfoScreen(),
       },
     );
   }

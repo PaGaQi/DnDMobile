@@ -94,7 +94,7 @@ class Monsters {
   String meta;
   String armorClass;
   String hitPoint;
-  //String speed;
+  String speed;
 
   String str;
   String dex;
@@ -117,20 +117,16 @@ class Monsters {
         meta = docSnap['meta'],
         armorClass = docSnap['Armor Class'],
         hitPoint = docSnap['Hit Points'],
-        //speed = docSnap['speed'],
+        speed = docSnap['Speed'],
         str = docSnap['STR'],
         dex = docSnap['DEX'],
         con = docSnap['CON'],
         inte = docSnap['INT'],
         wis = docSnap['WIS'],
         cha = docSnap['CHA'],
-        //savingThrows = docSnap['Saving Throws'],
-        //skills = docSnap['Skills'],
         senses = docSnap['Senses'],
         languages = docSnap['Languages'],
         challenge = docSnap['Challenge'],
-        //traits = docSnap['Traits'],
-        //actions = docSnap['Actions'],
         url = docSnap['img_url'];
 }
 
