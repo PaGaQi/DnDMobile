@@ -61,10 +61,6 @@ class MonsterListBody extends StatelessWidget {
                     text: titles[0],
                   ),
                   Tab(
-                    icon: const Icon(Icons.star),
-                    text: titles[1],
-                  ),
-                  Tab(
                     icon: const Icon(Icons.home),
                     text: titles[2],
                   ),
@@ -110,17 +106,6 @@ class MonsterListBody extends StatelessWidget {
                                 onTap: () => Navigator.of(context).pushNamed(
                                     '/MonsterInfo',
                                     arguments: currentMonster[index].id));
-                          },
-                        ),
-                        ListView.builder(
-                          itemCount: 25,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListTile(
-                              tileColor: index.isOdd
-                                  ? Color.fromARGB(255, 255, 189, 89)
-                                  : Color.fromARGB(255, 252, 201, 126),
-                              title: Text('${titles[1]} $index'),
-                            );
                           },
                         ),
                         ListView.builder(

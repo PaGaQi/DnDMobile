@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dndfirebase/Modals/firebase_data.dart';
 import 'package:flutter/material.dart';
 
+import 'dart:math';
+
 class MainScreen extends StatelessWidget {
   const MainScreen({
     Key? key,
@@ -143,8 +145,10 @@ class MainScreenData extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(15)),
                             ),
                             onPressed: () {
+                              Random random = new Random();
+                              int randomNumber = random.nextInt(325);
                               Navigator.of(context).pushNamed(
-                                arguments: "0",
+                                arguments: "$randomNumber",
                                 "/MonsterInfo",
                               );
                             },
