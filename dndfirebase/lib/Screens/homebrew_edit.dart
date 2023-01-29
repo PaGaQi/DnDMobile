@@ -211,36 +211,48 @@ class _HomebrewEditScreen extends State<HomebrewEditScreen> {
                   decoration: const InputDecoration(
                     label: Text("STR"),
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextField(
                   controller: controllerDex,
                   decoration: const InputDecoration(
                     label: Text("DEX"),
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextField(
                   controller: controllerCon,
                   decoration: const InputDecoration(
                     label: Text("CON"),
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextField(
                   controller: controllerInte,
                   decoration: const InputDecoration(
                     label: Text("INT"),
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextField(
                   controller: controllerWis,
                   decoration: const InputDecoration(
                     label: Text("WIS"),
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextField(
                   controller: controllerCha,
                   decoration: const InputDecoration(
                     label: Text("CHA"),
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextField(
                   controller: controllerSaving,
