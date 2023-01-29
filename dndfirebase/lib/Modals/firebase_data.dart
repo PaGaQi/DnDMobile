@@ -94,28 +94,20 @@ class Monsters {
   String meta;
   String armorClass;
   String hitPoint;
-  String speed;
+  //String speed;
+
   String str;
-  // String str_mod;
   String dex;
-  //String dex_mod;
   String con;
-  //String con_mod;
   String inte;
-  //String inte_mod;
   String wis;
-  //String wis_mod;
   String cha;
-  //String cha_mod;
-  String saving_throws;
-  String skills;
+
   String senses;
   String languages;
   String challenge;
-  String traits;
-  String actions;
-  //String legendary_actions;
-  String image_url;
+  // String actions;
+  String url;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -125,32 +117,27 @@ class Monsters {
         meta = docSnap['meta'],
         armorClass = docSnap['Armor Class'],
         hitPoint = docSnap['Hit Points'],
-        speed = docSnap['speed'],
+        //speed = docSnap['speed'],
         str = docSnap['STR'],
-        //str = docSnap['STR'],
         dex = docSnap['DEX'],
-        //dex = docSnap['DEX'],
         con = docSnap['CON'],
-        //con = docSnap['CON'],
         inte = docSnap['INT'],
-        //inte = docSnap['INT'],
         wis = docSnap['WIS'],
-        //wis = docSnap['WIS'],
         cha = docSnap['CHA'],
-        // cha = docSnap['CHA'],
-        saving_throws = docSnap['Saving Throws'],
-        skills = docSnap['Skills'],
+        //savingThrows = docSnap['Saving Throws'],
+        //skills = docSnap['Skills'],
         senses = docSnap['Senses'],
         languages = docSnap['Languages'],
         challenge = docSnap['Challenge'],
-        traits = docSnap['Traits'],
-        actions = docSnap['Actions'],
-        image_url = docSnap['img_url'];
+        //traits = docSnap['Traits'],
+        //actions = docSnap['Actions'],
+        url = docSnap['img_url'];
 }
 
 Stream<List<Monsters>> dbGetMonsters() async* {
   final db = FirebaseFirestore.instance;
-  final query = db.collection("/monstersDnD").orderBy("name", descending: true);
+  final query =
+      db.collection("/monstersDnD").orderBy("name", descending: false);
   await for (final qsnap in query.snapshots()) {
     List<Monsters> monsters = [];
     for (final doc in qsnap.docs) {
